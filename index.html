@@ -101,6 +101,8 @@ async function submitPlaylist(){
     catch(e){ throw new Error('Server error — please try again in a moment'); }
     if(!res.ok)throw new Error(data.error||'Failed to add playlist');
     if(data.needsAuth){
+      // Clear any previous error before redirecting to Spotify login
+      state.addStatus=null;
       // Redirect to Spotify login — will come back to game with ?addSuccess or ?addError
       window.location.href=data.authUrl;
       return;
