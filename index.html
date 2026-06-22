@@ -94,7 +94,11 @@ async function submitPlaylist(){
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({url:state.addUrl.trim(),emoji:state.addEmoji}),
     });
-    const data=await res.json();
+    // Parse response safely
+    const text=await res.text();
+    let data;
+    try{ data=JSON.parse(text); }
+    catch(e){ throw new Error('Server error — please try again in a moment'); }
     if(!res.ok)throw new Error(data.error||'Failed to add playlist');
     if(data.needsAuth){
       // Redirect to Spotify login — will come back to game with ?addSuccess or ?addError
