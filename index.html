@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 <title>HITSTER</title>
-<style>*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}body{background:#141414;color:#F0EFEA;font-family:'Helvetica Neue',Arial,sans-serif;font-size:16px;min-height:100vh;display:flex;justify-content:center}#app{width:100%;max-width:540px;padding:20px 16px 80px;display:flex;flex-direction:column;gap:14px}.hero{text-align:center;padding:24px 0 8px;display:flex;flex-direction:column;align-items:center;gap:8px}.ring{width:68px;height:68px;border-radius:50%;border:3px solid #FF6B35;display:flex;align-items:center;justify-content:center;font-size:32px}h1{font-size:50px;font-weight:900;letter-spacing:.14em;color:#FF6B35}.sub{font-size:11px;color:#555;letter-spacing:.18em}.card{background:#1E1E1E;border-radius:14px;padding:18px 16px;display:flex;flex-direction:column;gap:12px}.label{font-size:11px;font-weight:800;letter-spacing:.22em;color:#FF6B35;text-transform:uppercase}.hint{font-size:12px;color:#444;font-style:italic}.combo-info{font-size:12px;color:#4ECDC4;font-weight:700}.loading-text{font-size:13px;color:#666;text-align:center;padding:8px 0}.server-error{font-size:12px;color:#F5A623}.pl-row{display:flex;align-items:center;gap:6px}.pl-btn{background:#2A2A2A;border:2px solid transparent;border-radius:10px;padding:12px 14px;cursor:pointer;display:flex;align-items:center;gap:12px;flex:1;color:#F0EFEA;text-align:left}.pl-btn.active{border-color:#FF6B35;background:#2a1f1a}.pl-delete{background:transparent;border:1px solid #333;color:#555;border-radius:8px;padding:8px 10px;cursor:pointer;font-size:13px;flex-shrink:0}.pl-delete:hover{color:#ff6b35;border-color:#ff6b35}.pl-emoji{font-size:26px;flex-shrink:0}.pl-info{flex:1}.pl-name{font-size:14px;font-weight:700;margin:0}.pl-meta{font-size:12px;color:#888;margin:3px 0 0}.check{color:#FF6B35;font-weight:900;font-size:18px}.add-playlist-btn{background:#2A2A2A;color:#aaa;border:2px dashed #333;border-radius:10px;padding:12px 0;font-size:13px;cursor:pointer;width:100%}.add-form{background:#252525;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:10px}.add-form-title{font-size:13px;font-weight:800;color:#FF6B35}.add-label{font-size:11px;color:#888;font-weight:600}.emoji-row{display:flex;gap:6px;flex-wrap:wrap}.emoji-btn{background:#2A2A2A;border:2px solid transparent;border-radius:8px;padding:6px 8px;font-size:18px;cursor:pointer}.emoji-btn.active{border-color:#FF6B35}.form-btns{display:flex;gap:8px}.add-submit-btn{background:#FF6B35;color:#fff;border:none;border-radius:8px;padding:11px 0;font-size:13px;font-weight:700;cursor:pointer;flex:1}.add-submit-btn:disabled{opacity:.5;cursor:default}.add-cancel-btn{background:#2A2A2A;color:#888;border:none;border-radius:8px;padding:11px 0;font-size:13px;cursor:pointer;flex:1}.add-status-loading{font-size:12px;color:#888;text-align:center}.add-status-ok{font-size:13px;color:#4ECDC4;font-weight:700;text-align:center}.add-status-error{font-size:12px;color:#ff6b35}.add-tabs{display:flex;gap:8px;margin-bottom:4px}.add-tab{background:#2A2A2A;color:#888;border:none;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:700;cursor:pointer;flex:1}.add-tab.active{background:#FF6B35;color:#fff}.add-note{font-size:11px;color:#555;font-style:italic}.add-exportify-tip{font-size:12px;color:#888;line-height:1.6}.exportify-link{color:#4ECDC4;text-decoration:none}.row{display:flex;gap:8px}.pill{background:#2A2A2A;color:#F0EFEA;border:none;border-radius:20px;padding:8px 18px;font-size:15px;font-weight:700;cursor:pointer}.pill.active{background:#FF6B35;color:#fff}.name-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}input{background:#2A2A2A;border:none;border-radius:8px;padding:11px 12px;color:#F0EFEA;font-size:14px;outline:none;width:100%}.goal-desc{font-size:12px;color:#666}.goal-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.start-btn{background:#FF6B35;color:#fff;border:none;border-radius:12px;padding:18px 0;font-size:14px;font-weight:800;cursor:pointer;width:100%}.start-btn:disabled{background:#2A2A2A;color:#444;cursor:default}.scoreboard{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}.chip{background:#1E1E1E;border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;align-items:center;min-width:72px;opacity:.4;flex-shrink:0;gap:2px}.chip.active{opacity:1;border:2px solid #FF6B35}.chip-name{font-size:11px;color:#ccc;font-weight:700;white-space:nowrap}.chip-name-tap{cursor:pointer;text-decoration:underline dotted;text-underline-offset:2px}.chip-score{font-size:22px;font-weight:900;color:#FF6B35}.chip-tokens{display:flex;gap:1px;justify-content:center}.token-dot{font-size:9px}.token-on{opacity:1}.token-off{opacity:.2}.turn-hint{font-size:11px;color:#666;text-align:center}.turn-line{font-size:15px;color:#999;text-align:center}.turn-name{color:#FF6B35}.deck-wrap{display:flex;justify-content:center;padding:16px 0}.deck-card{background:#1E1E1E;border:2px dashed #FF6B35;border-radius:16px;width:180px;height:210px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:10px}.deck-emoji{font-size:42px}.deck-label{font-size:12px;color:#FF6B35;font-weight:800;letter-spacing:.12em}.deck-sub{font-size:12px;color:#666}.qr-card{background:#1E1E1E;border-radius:14px;padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:14px}.qr-card p{font-size:13px;font-weight:700;text-align:center}.qr-sub{font-size:12px;color:#555;font-weight:400!important}.qr-miss{width:260px;height:260px;background:#2A2A2A;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#555;font-size:11px;text-align:center;padding:20px}.qr-fallback{background:#2A2A2A;border-radius:12px;padding:16px;text-align:center;display:flex;flex-direction:column;gap:8px;width:260px}.qr-loading{width:260px;height:260px;background:#2A2A2A;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}.qr-spinner{width:32px;height:32px;border:3px solid #333;border-top:3px solid #FF6B35;border-radius:50%;animation:spin 0.8s linear infinite}.qr-loading-text{font-size:12px;color:#555;margin:0}@keyframes spin{to{transform:rotate(360deg)}}.qr-fallback-label{font-size:11px;color:#888}.qr-fallback-link{font-size:10px;color:#1DB954;word-break:break-all}.mystery-card{background:#1E1E1E;border-radius:14px;padding:16px;text-align:center;border:2px solid #2A2A2A;font-size:15px;color:#888}.slot-btn{background:#2A2A2A;border:2px dashed #444;border-radius:8px;color:#888;padding:13px 14px;font-size:14px;font-weight:600;cursor:pointer;text-align:left;width:100%}.slot-selected{border-color:#FF6B35!important;color:#FF6B35!important;background:#2a1f1a!important}.lock-btn{background:#FF6B35;color:#fff;border:none;border-radius:12px;padding:16px 0;font-size:14px;font-weight:800;cursor:pointer;width:100%}.slot-btn-sm{background:#2A2A2A;border:1px solid #444;border-radius:8px;color:#bbb;padding:11px 14px;font-size:13px;font-weight:600;cursor:pointer;text-align:left;width:100%}.skip-btn{background:#2A2A2A;border:1px solid #555;border-radius:8px;color:#888;padding:11px 18px;font-size:13px;font-weight:600;cursor:pointer}.challenge-info{font-size:13px;color:#999;line-height:1.5}.challenge-player-row{display:flex;flex-direction:column;gap:6px;padding:10px 0;border-bottom:1px solid #2A2A2A}.challenge-player-name{font-size:15px;font-weight:700}.challenge-tokens-left{font-size:12px;color:#aaa}.challenge-slot-btns{display:flex;flex-direction:column;gap:4px}.challenge-placed{font-size:13px;color:#4ECDC4;font-weight:600}.challenge-passed{font-size:13px;color:#777}.challenge-no-tokens{font-size:13px;color:#666}.change-btn{background:transparent;border:1px solid #444;border-radius:6px;color:#888;padding:6px 12px;font-size:12px;cursor:pointer;align-self:flex-start;margin-top:2px}.waiting-text{font-size:14px;color:#888;text-align:center}.change-btn{background:transparent;border:1px dashed #444;border-radius:6px;color:#666;padding:6px 12px;font-size:12px;cursor:pointer;margin-top:2px}.tl-slots{display:flex;flex-direction:column;gap:4px}.tl-card{background:#2A2A2A;border-radius:8px;padding:9px 12px;display:flex;align-items:center;gap:10px}.tl-year{font-size:15px;font-weight:900;color:#FF6B35;min-width:42px}.tl-title{font-size:14px;font-weight:700;margin:0}.tl-artist{font-size:12px;color:#888;margin:0}.tl-correct{background:#1a3328!important;border-left:3px solid #4ECDC4}.tl-none{font-size:13px;color:#777;text-align:center;padding:8px 0}.placed-marker{font-size:13px;color:#FF6B35;font-weight:700;text-align:center;padding:6px 0}.challenge-marker{font-size:13px;color:#F5A623;font-weight:700;text-align:center;padding:6px 0}.result-card{border-radius:14px;padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;background:#1E1E1E}.result-card.correct{border:2px solid #4ECDC4}.result-card.wrong{border:2px solid #FF6B35}.result-title{font-size:22px;font-weight:900}.result-artist{font-size:16px;color:#aaa}.result-year{display:inline-block;background:#FF6B35;color:#fff;font-weight:900;font-size:28px;border-radius:8px;padding:8px 24px}.result-verdict.correct{color:#4ECDC4;font-size:18px;font-weight:800}.result-verdict.wrong{color:#FF6B35;font-size:18px;font-weight:800}.reveal-btn{background:#FF6B35;color:#fff;border:none;border-radius:12px;padding:16px 0;font-size:15px;font-weight:800;cursor:pointer;width:100%}.next-ok{background:#4ECDC4;color:#141414;border:none;border-radius:12px;padding:16px 0;font-size:14px;font-weight:800;cursor:pointer;width:100%}.next-next{background:#2A2A2A;color:#F0EFEA;border:none;border-radius:12px;padding:16px 0;font-size:14px;font-weight:800;cursor:pointer;width:100%}.end-btn{background:transparent;color:#333;border:1px solid #2A2A2A;border-radius:10px;padding:10px 0;font-size:12px;cursor:pointer;width:100%}.bonus-popup{background:#1E1E1E;border:2px solid #F5A623;border-radius:14px;padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}.bonus-emoji{font-size:36px}.bonus-title{font-size:16px;font-weight:800}.bonus-sub{font-size:12px;color:#888}.bonus-btns{display:flex;gap:10px;width:100%}.bonus-yes{background:#4ECDC4;color:#141414;border:none;border-radius:10px;padding:13px 0;font-size:14px;font-weight:800;cursor:pointer;flex:1}.bonus-no{background:#2A2A2A;color:#888;border:none;border-radius:10px;padding:13px 0;font-size:14px;font-weight:700;cursor:pointer;flex:1}.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.75);display:flex;align-items:flex-end;justify-content:center;z-index:100}.modal-box{background:#1E1E1E;border-radius:14px 14px 0 0;width:100%;max-width:540px;max-height:80vh;overflow-y:auto;padding:20px 16px 40px}.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.modal-title{font-size:14px;font-weight:800;color:#FF6B35;text-transform:uppercase;letter-spacing:.1em}.modal-close{background:transparent;border:1px solid #333;color:#888;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px}.header-row{display:flex;justify-content:space-between;align-items:center;padding-top:4px}.header-right{display:flex;align-items:center;gap:10px}.header-goal{font-size:12px;color:#FF6B35;font-weight:700}.header-left{font-size:13px;color:#888}.results-row{display:flex;align-items:center;gap:8px;padding:12px 0;border-bottom:1px solid #2A2A2A}.results-medal{font-size:24px;width:36px}.results-name{flex:1;font-size:17px;font-weight:700}.results-pts{font-size:22px;font-weight:900;color:#FF6B35}.results-tokens{font-size:13px;color:#666}.year-warning{font-size:11px;color:#F5A623;text-align:center;font-style:italic}.how-row{display:flex;gap:12px;align-items:flex-start}.how-icon{font-size:20px;flex-shrink:0}.how-text{font-size:14px;color:#ccc;line-height:1.5}</style>
+<style>*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}body{background:#141414;color:#F0EFEA;font-family:'Helvetica Neue',Arial,sans-serif;min-height:100vh;display:flex;justify-content:center}#app{width:100%;max-width:540px;padding:20px 16px 80px;display:flex;flex-direction:column;gap:14px}.hero{text-align:center;padding:24px 0 8px;display:flex;flex-direction:column;align-items:center;gap:8px}.ring{width:68px;height:68px;border-radius:50%;border:3px solid #FF6B35;display:flex;align-items:center;justify-content:center;font-size:32px}h1{font-size:50px;font-weight:900;letter-spacing:.14em;color:#FF6B35}.sub{font-size:11px;color:#555;letter-spacing:.18em}.card{background:#1E1E1E;border-radius:14px;padding:18px 16px;display:flex;flex-direction:column;gap:12px}.label{font-size:10px;font-weight:800;letter-spacing:.22em;color:#FF6B35;text-transform:uppercase}.hint{font-size:12px;color:#444;font-style:italic}.combo-info{font-size:12px;color:#4ECDC4;font-weight:700}.loading-text{font-size:13px;color:#666;text-align:center;padding:8px 0}.server-error{font-size:12px;color:#F5A623}.pl-row{display:flex;align-items:center;gap:6px}.pl-btn{background:#2A2A2A;border:2px solid transparent;border-radius:10px;padding:12px 14px;cursor:pointer;display:flex;align-items:center;gap:12px;flex:1;color:#F0EFEA;text-align:left}.pl-btn.active{border-color:#FF6B35;background:#2a1f1a}.pl-delete{background:transparent;border:1px solid #333;color:#555;border-radius:8px;padding:8px 10px;cursor:pointer;font-size:13px;flex-shrink:0}.pl-delete:hover{color:#ff6b35;border-color:#ff6b35}.pl-emoji{font-size:26px;flex-shrink:0}.pl-info{flex:1}.pl-name{font-size:14px;font-weight:700;margin:0}.pl-meta{font-size:11px;color:#666;margin:3px 0 0}.check{color:#FF6B35;font-weight:900;font-size:18px}.add-playlist-btn{background:#2A2A2A;color:#aaa;border:2px dashed #333;border-radius:10px;padding:12px 0;font-size:13px;cursor:pointer;width:100%}.add-form{background:#252525;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:10px}.add-form-title{font-size:13px;font-weight:800;color:#FF6B35}.add-label{font-size:11px;color:#888;font-weight:600}.emoji-row{display:flex;gap:6px;flex-wrap:wrap}.emoji-btn{background:#2A2A2A;border:2px solid transparent;border-radius:8px;padding:6px 8px;font-size:18px;cursor:pointer}.emoji-btn.active{border-color:#FF6B35}.form-btns{display:flex;gap:8px}.add-submit-btn{background:#FF6B35;color:#fff;border:none;border-radius:8px;padding:11px 0;font-size:13px;font-weight:700;cursor:pointer;flex:1}.add-submit-btn:disabled{opacity:.5;cursor:default}.add-cancel-btn{background:#2A2A2A;color:#888;border:none;border-radius:8px;padding:11px 0;font-size:13px;cursor:pointer;flex:1}.add-status-loading{font-size:12px;color:#888;text-align:center}.add-status-ok{font-size:13px;color:#4ECDC4;font-weight:700;text-align:center}.add-status-error{font-size:12px;color:#ff6b35}.row{display:flex;gap:8px}.pill{background:#2A2A2A;color:#F0EFEA;border:none;border-radius:20px;padding:8px 18px;font-size:15px;font-weight:700;cursor:pointer}.pill.active{background:#FF6B35;color:#fff}.name-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}input{background:#2A2A2A;border:none;border-radius:8px;padding:11px 12px;color:#F0EFEA;font-size:14px;outline:none;width:100%}.goal-desc{font-size:12px;color:#666}.goal-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.start-btn{background:#FF6B35;color:#fff;border:none;border-radius:12px;padding:18px 0;font-size:14px;font-weight:800;cursor:pointer;width:100%}.start-btn:disabled{background:#2A2A2A;color:#444;cursor:default}.scoreboard{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}.chip{background:#1E1E1E;border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;align-items:center;min-width:72px;opacity:.4;flex-shrink:0;gap:2px}.chip.active{opacity:1;border:2px solid #FF6B35}.chip-name{font-size:10px;color:#aaa;font-weight:700;white-space:nowrap}.chip-name-tap{cursor:pointer;text-decoration:underline dotted;text-underline-offset:2px}.chip-score{font-size:20px;font-weight:900;color:#FF6B35}.chip-tokens{display:flex;gap:1px;justify-content:center}.token-dot{font-size:9px}.token-on{opacity:1}.token-off{opacity:.2}.turn-hint{font-size:10px;color:#444;text-align:center}.turn-line{font-size:13px;color:#666;text-align:center}.turn-name{color:#FF6B35}.deck-wrap{display:flex;justify-content:center;padding:16px 0}.deck-card{background:#1E1E1E;border:2px dashed #FF6B35;border-radius:16px;width:180px;height:210px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;gap:10px}.deck-emoji{font-size:42px}.deck-label{font-size:12px;color:#FF6B35;font-weight:800;letter-spacing:.12em}.deck-sub{font-size:11px;color:#444}.qr-card{background:#1E1E1E;border-radius:14px;padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:14px}.qr-card p{font-size:13px;font-weight:700;text-align:center}.qr-sub{font-size:12px;color:#555;font-weight:400!important}.qr-miss{width:260px;height:260px;background:#2A2A2A;border-radius:12px;display:flex;align-items:center;justify-content:center;color:#555;font-size:11px;text-align:center;padding:20px}.qr-fallback{background:#2A2A2A;border-radius:12px;padding:16px;text-align:center;display:flex;flex-direction:column;gap:8px;width:260px}.qr-fallback-label{font-size:11px;color:#888}.qr-fallback-link{font-size:10px;color:#1DB954;word-break:break-all}.mystery-card{background:#1E1E1E;border-radius:14px;padding:16px;text-align:center;border:2px solid #2A2A2A;font-size:13px;color:#555}.slot-btn{background:#2A2A2A;border:2px dashed #333;border-radius:8px;color:#555;padding:10px 12px;font-size:12px;font-weight:600;cursor:pointer;text-align:left;width:100%}.slot-selected{border-color:#FF6B35!important;color:#FF6B35!important;background:#2a1f1a!important}.lock-btn{background:#FF6B35;color:#fff;border:none;border-radius:12px;padding:16px 0;font-size:14px;font-weight:800;cursor:pointer;width:100%}.slot-btn-sm{background:#2A2A2A;border:1px solid #3a3a3a;border-radius:6px;color:#aaa;padding:7px 10px;font-size:11px;font-weight:600;cursor:pointer;text-align:left}.skip-btn{background:transparent;border:1px solid #333;border-radius:6px;color:#444;padding:7px 12px;font-size:11px;cursor:pointer}.challenge-info{font-size:12px;color:#666;line-height:1.5}.challenge-player-row{display:flex;flex-direction:column;gap:6px;padding:10px 0;border-bottom:1px solid #2A2A2A}.challenge-player-name{font-size:13px;font-weight:700}.challenge-tokens-left{font-size:11px;color:#888}.challenge-slot-btns{display:flex;flex-direction:column;gap:4px}.challenge-placed{font-size:12px;color:#4ECDC4;font-weight:600}.challenge-passed{font-size:12px;color:#555}.challenge-no-tokens{font-size:12px;color:#444}.waiting-text{font-size:13px;color:#555;text-align:center}.tl-slots{display:flex;flex-direction:column;gap:4px}.tl-card{background:#2A2A2A;border-radius:8px;padding:9px 12px;display:flex;align-items:center;gap:10px}.tl-year{font-size:13px;font-weight:900;color:#FF6B35;min-width:38px}.tl-title{font-size:13px;font-weight:700;margin:0}.tl-artist{font-size:11px;color:#555;margin:0}.tl-correct{background:#1a3328!important;border-left:3px solid #4ECDC4}.tl-none{font-size:12px;color:#555;text-align:center;padding:8px 0}.placed-marker{font-size:11px;color:#FF6B35;font-weight:700;text-align:center;padding:4px 0}.challenge-marker{font-size:11px;color:#F5A623;font-weight:700;text-align:center;padding:4px 0}.result-card{border-radius:14px;padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;background:#1E1E1E}.result-card.correct{border:2px solid #4ECDC4}.result-card.wrong{border:2px solid #FF6B35}.result-title{font-size:22px;font-weight:900}.result-artist{font-size:14px;color:#888}.result-year{display:inline-block;background:#FF6B35;color:#fff;font-weight:900;font-size:28px;border-radius:8px;padding:8px 24px}.result-verdict.correct{color:#4ECDC4;font-size:17px;font-weight:800}.result-verdict.wrong{color:#FF6B35;font-size:17px;font-weight:800}.reveal-btn{background:#FF6B35;color:#fff;border:none;border-radius:12px;padding:16px 0;font-size:15px;font-weight:800;cursor:pointer;width:100%}.next-ok{background:#4ECDC4;color:#141414;border:none;border-radius:12px;padding:16px 0;font-size:14px;font-weight:800;cursor:pointer;width:100%}.next-next{background:#2A2A2A;color:#F0EFEA;border:none;border-radius:12px;padding:16px 0;font-size:14px;font-weight:800;cursor:pointer;width:100%}.end-btn{background:transparent;color:#333;border:1px solid #2A2A2A;border-radius:10px;padding:10px 0;font-size:12px;cursor:pointer;width:100%}.bonus-popup{background:#1E1E1E;border:2px solid #F5A623;border-radius:14px;padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}.bonus-emoji{font-size:36px}.bonus-title{font-size:16px;font-weight:800}.bonus-sub{font-size:12px;color:#888}.bonus-btns{display:flex;gap:10px;width:100%}.bonus-yes{background:#4ECDC4;color:#141414;border:none;border-radius:10px;padding:13px 0;font-size:14px;font-weight:800;cursor:pointer;flex:1}.bonus-no{background:#2A2A2A;color:#888;border:none;border-radius:10px;padding:13px 0;font-size:14px;font-weight:700;cursor:pointer;flex:1}.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.75);display:flex;align-items:flex-end;justify-content:center;z-index:100}.modal-box{background:#1E1E1E;border-radius:14px 14px 0 0;width:100%;max-width:540px;max-height:80vh;overflow-y:auto;padding:20px 16px 40px}.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.modal-title{font-size:14px;font-weight:800;color:#FF6B35;text-transform:uppercase;letter-spacing:.1em}.modal-close{background:transparent;border:1px solid #333;color:#888;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px}.header-row{display:flex;justify-content:space-between;align-items:center;padding-top:4px}.header-right{display:flex;align-items:center;gap:10px}.header-goal{font-size:12px;color:#FF6B35;font-weight:700}.header-left{font-size:12px;color:#555}.results-row{display:flex;align-items:center;gap:8px;padding:12px 0;border-bottom:1px solid #2A2A2A}.results-medal{font-size:24px;width:36px}.results-name{flex:1;font-size:17px;font-weight:700}.results-pts{font-size:22px;font-weight:900;color:#FF6B35}.results-tokens{font-size:13px;color:#666}.year-warning{font-size:11px;color:#F5A623;text-align:center;font-style:italic}.how-row{display:flex;gap:12px;align-items:flex-start}.how-icon{font-size:20px;flex-shrink:0}.how-text{font-size:13px;color:#aaa;line-height:1.5}</style>
 </head>
 <body>
 <div id="app"></div>
@@ -38,16 +38,12 @@ let state = {
   // Dynamic playlists from server
   serverPlaylists: [],
   playlistsLoaded: false,
-  addNotice: null,
   playlistsError: null,
   // Add playlist UI
   addingPlaylist: false,
   addUrl: '',
   addEmoji: '🎵',
-  addStatus: null,
-  addMode: 'url', // 'url' or 'csv'
-  addCsvText: '',
-  addCsvName: '', // null | 'loading' | 'success' | {error}
+  addStatus: null, // null | 'loading' | 'success' | {error}
 };
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -97,37 +93,11 @@ async function submitPlaylist(){
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({url:state.addUrl.trim(),emoji:state.addEmoji}),
     });
-    // Parse response safely
-    const text=await res.text();
-    let data;
-    try{ data=JSON.parse(text); }
-    catch(e){ throw new Error('Server error — please try again in a moment'); }
+    const data=await res.json();
     if(!res.ok)throw new Error(data.error||'Failed to add playlist');
-    // Success
+    // Reload playlists
     await loadServerPlaylists();
     state.addStatus='success';state.addUrl='';state.addEmoji='🎵';
-    setTimeout(()=>{state.addStatus=null;state.addingPlaylist=false;render();},2500);
-  }catch(e){
-    state.addStatus={error:e.message};
-  }
-  render();
-}
-
-async function submitCSV(){
-  if(!state.addCsvText.trim()||!state.addCsvName.trim())return;
-  state.addStatus='loading';render();
-  try{
-    const res=await fetch(API_URL+'/playlists/import-csv',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({csv:state.addCsvText.trim(),name:state.addCsvName.trim(),emoji:state.addEmoji}),
-    });
-    const text=await res.text();
-    let data;
-    try{data=JSON.parse(text);}catch(e){throw new Error('Server error — please try again');}
-    if(!res.ok)throw new Error(data.error||'Failed to import playlist');
-    await loadServerPlaylists();
-    state.addStatus='success';state.addCsvText='';state.addCsvName='';state.addEmoji='🎵';
     setTimeout(()=>{state.addStatus=null;state.addingPlaylist=false;render();},2500);
   }catch(e){
     state.addStatus={error:e.message};
@@ -173,46 +143,9 @@ function makeQRFallback(spotifyId){
   return wrap;
 }
 
-// QR codes fetched from server (cached in memory)
-const serverQRCache = {};
-
-function renderQR(spotifyId, containerEl){
-  // Already have it
-  if(QR_DATA[spotifyId]) return makeQR(spotifyId);
-  if(serverQRCache[spotifyId]) return makeQRFromData(serverQRCache[spotifyId]);
-
-  // Show placeholder and fetch from server
-  const placeholder = div('qr-loading');
-  ap(placeholder, h('div',{class:'qr-spinner'}), h('p',{class:'qr-loading-text',text:'Generating QR…'}));
-
-  if(!API_URL.includes('YOUR_RAILWAY_URL')){
-    fetch(API_URL+'/qr/'+spotifyId)
-      .then(r=>r.json())
-      .then(data=>{
-        serverQRCache[spotifyId]=data;
-        // Replace placeholder with real QR if still in DOM
-        if(placeholder.parentNode){
-          placeholder.parentNode.replaceChild(makeQRFromData(data), placeholder);
-        }
-      })
-      .catch(()=>{
-        if(placeholder.parentNode){
-          placeholder.parentNode.replaceChild(makeQRFallback(spotifyId), placeholder);
-        }
-      });
-  }
-  return placeholder;
-}
-
-function makeQRFromData(data){
-  const ns='http://www.w3.org/2000/svg';
-  const svg=document.createElementNS(ns,'svg');
-  svg.setAttribute('viewBox',data.vb);svg.setAttribute('width','260');svg.setAttribute('height','260');
-  svg.setAttribute('shape-rendering','crispEdges');svg.style.cssText='border-radius:12px;display:block;background:#fff';
-  const vb=data.vb.split(' ');
-  const bg=document.createElementNS(ns,'path');bg.setAttribute('fill','#fff');bg.setAttribute('d','M0 0h'+vb[2]+'v'+vb[3]+'H0z');
-  const p=document.createElementNS(ns,'path');p.setAttribute('stroke','#000');p.setAttribute('d',data.d);
-  svg.appendChild(bg);svg.appendChild(p);return svg;
+function renderQR(spotifyId){
+  const data=QR_DATA[spotifyId];
+  return data ? makeQR(spotifyId) : makeQRFallback(spotifyId);
 }
 
 function render(){
@@ -287,14 +220,6 @@ function renderHome(){
       const addForm=div('add-form');
       ap(addForm,h('p',{class:'add-form-title',text:'Add a Spotify Playlist'}));
 
-      // Mode tabs
-      const tabs=div('add-tabs');
-      ap(tabs,
-        btn('add-tab'+(state.addMode==='url'?' active':''),'🔗 Spotify URL',()=>{state.addMode='url';state.addStatus=null;render();}),
-        btn('add-tab'+(state.addMode==='csv'?' active':''),'📄 CSV Import',()=>{state.addMode='csv';state.addStatus=null;render();})
-      );
-      ap(addForm,tabs);
-
       // Emoji picker
       const emojiRow=div('emoji-row');
       ['🎵','🌅','🎸','🗽','👤','🎤','🕺','🌍','🔥','💿'].forEach(em=>{
@@ -302,29 +227,13 @@ function renderHome(){
       });
       ap(addForm,h('p',{class:'add-label',text:'Pick an emoji:'}),emojiRow);
 
-      if(state.addMode==='url'){
-        ap(addForm,h('p',{class:'add-label',text:'Spotify playlist link:'}));
-        const inp=h('input',{placeholder:'https://open.spotify.com/playlist/...',value:state.addUrl,input:(e)=>{state.addUrl=e.target.value;}});
-        ap(addForm,inp);
-        ap(addForm,h('p',{class:'add-note',text:'Note: some playlists are restricted by Spotify. If this fails, use CSV import instead.'}));
-      } else {
-        ap(addForm,h('p',{class:'add-label',text:'Playlist name:'}));
-        const nameInp=h('input',{placeholder:'e.g. My 80s Mix',value:state.addCsvName,input:(e)=>{state.addCsvName=e.target.value;}});
-        ap(addForm,nameInp);
-        ap(addForm,h('p',{class:'add-label',text:'CSV from Exportify:'}));
-        ap(addForm,ap(h('p',{class:'add-exportify-tip'}),
-          'Export your playlist at ',
-          ap(h('a',{href:'https://exportify.net',target:'_blank',class:'exportify-link'}),'exportify.net'),
-          ', then paste the CSV contents below:'
-        ));
-        const csvInp=h('textarea',{placeholder:'Paste CSV contents here...',input:(e)=>{state.addCsvText=e.target.value;}});
-        csvInp.style.cssText='width:100%;height:120px;background:#2A2A2A;border:none;border-radius:8px;padding:10px;color:#F0EFEA;font-size:11px;font-family:monospace;resize:vertical;outline:none';
-        csvInp.value=state.addCsvText;
-        ap(addForm,csvInp);
-      }
+      // URL input
+      ap(addForm,h('p',{class:'add-label',text:'Spotify playlist link:'}));
+      const inp=h('input',{placeholder:'https://open.spotify.com/playlist/...',value:state.addUrl,input:(e)=>{state.addUrl=e.target.value;}});
+      ap(addForm,inp);
 
       if(state.addStatus==='loading'){
-        ap(addForm,h('p',{class:'add-status-loading',text:'⏳ '+(state.addMode==='csv'?'Importing playlist…':'Fetching playlist from Spotify…')}));
+        ap(addForm,h('p',{class:'add-status-loading',text:'⏳ Fetching playlist from Spotify…'}));
       } else if(state.addStatus==='success'){
         ap(addForm,h('p',{class:'add-status-ok',text:'✓ Playlist added!'}));
       } else if(state.addStatus&&state.addStatus.error){
@@ -332,10 +241,9 @@ function renderHome(){
       }
 
       const formBtns=div('form-btns');
-      const canSubmit=state.addMode==='url'?!!state.addUrl.trim():(!!state.addCsvText.trim()&&!!state.addCsvName.trim());
       ap(formBtns,
-        btn('add-submit-btn','Add Playlist',()=>state.addMode==='url'?submitPlaylist():submitCSV(),state.addStatus==='loading'||!canSubmit),
-        btn('add-cancel-btn','Cancel',()=>{state.addingPlaylist=false;state.addUrl='';state.addCsvText='';state.addCsvName='';state.addStatus=null;render();})
+        btn('add-submit-btn','Add Playlist',()=>submitPlaylist(),state.addStatus==='loading'),
+        btn('add-cancel-btn','Cancel',()=>{state.addingPlaylist=false;state.addUrl='';state.addStatus=null;render();})
       );
       ap(addForm,formBtns);
       ap(plCard,addForm);
@@ -459,11 +367,11 @@ function renderGame(){
   const turnLine=h('p',{class:'turn-line'});ap(turnLine,ap(h('b',{class:'turn-name'}),players[turn]),"'s turn");ap(root,turnLine);
 
   if(phase==='draw'){
-    const dc=div('deck-card');
-    // Auto-draw — skip draw phase entirely
+    // Auto-draw: immediately draw a card without requiring a tap
     if(!state.deck.length){state.screen='results';render();return;}
     const[_next,..._rest]=state.deck;
-    state.card=_next;state.deck=_rest;state.phase='place';state.slot=null;state.locked=false;state.result=null;state.challenges=[];render();
+    state.card=_next;state.deck=_rest;state.phase='place';state.slot=null;state.locked=false;state.result=null;state.challenges=[];
+    render();return;
   }
 
   if(phase==='place'&&card){
@@ -490,24 +398,8 @@ function renderGame(){
       const playerRow=div('challenge-player-row');
       ap(playerRow,h('span',{class:'challenge-player-name',text:players[idx]}),h('span',{class:'challenge-tokens-left',text:'⚡'.repeat(state.tokens[idx])||'(none)'}));
       if(existing){
-        if(existing.slot===-1){
-          // Passed — allow changing back
-          ap(playerRow,h('span',{class:'challenge-passed',text:'— Passed'}));
-          ap(playerRow,btn('change-btn','Change mind?',()=>{
-            state.challenges=state.challenges.filter(c=>c.playerIdx!==idx);
-            state.tokens[idx]++; // refund token if they had spent one
-            render();
-          }));
-        } else {
-          const b2=tl[existing.slot-1],a2=tl[existing.slot];
-          const lbl=existing.slot===0?'Before '+(a2?.year??'?'):existing.slot===tl.length?'After '+(b2?.year??'?'):'Between '+(b2?.year??'?')+' — '+(a2?.year??'?');
-          ap(playerRow,h('span',{class:'challenge-placed',text:'✓ '+lbl}));
-          ap(playerRow,btn('change-btn','Change slot?',()=>{
-            state.challenges=state.challenges.filter(c=>c.playerIdx!==idx);
-            state.tokens[idx]++; // refund the token
-            render();
-          }));
-        }
+        if(existing.slot===-1)ap(playerRow,h('span',{class:'challenge-passed',text:'— Passed'}));
+        else{const b2=tl[existing.slot-1],a2=tl[existing.slot];const lbl=existing.slot===0?'Before '+(a2?.year??'?'):existing.slot===tl.length?'After '+(b2?.year??'?'):'Between '+(b2?.year??'?')+' — '+(a2?.year??'?');ap(playerRow,h('span',{class:'challenge-placed',text:'✓ '+lbl}));}
       } else if(noTokens){
         ap(playerRow,h('span',{class:'challenge-no-tokens',text:'No tokens — skipped'}));
       } else {
@@ -556,14 +448,13 @@ function renderGame(){
       ap(root,btn('next-ok',players[result.winner]+' wins! 🏆 See results',()=>{state.screen='results';render();}));
     } else {
       ap(root,btn(result.winner!==null?'next-ok':'next-next','NEXT PLAYER →',()=>{
+        state.card=null;state.slot=null;state.locked=false;state.result=null;state.challenges=[];
+        state.turn=(state.turn+1)%state.playerCount;
+        // Auto-draw next card immediately
         if(!state.deck.length){state.screen='results';render();return;}
-        // Auto-draw next card
-        if(!state.deck.length){state.screen='results';render();return;}
-        const[nextCard,...restDeck]=state.deck;
-        state.deck=restDeck;state.card=nextCard;
-        state.slot=null;state.locked=false;state.result=null;state.challenges=[];
-        state.phase='place';
-        state.turn=(state.turn+1)%state.playerCount;render();
+        const[_n,..._r]=state.deck;
+        state.card=_n;state.deck=_r;state.phase='place';
+        render();
       }));
     }
   }
