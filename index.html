@@ -314,7 +314,8 @@ function renderHome(){
     state.tokens=Array(n).fill(START_TOKENS);
     state.turn=0;state.card=null;state.phase='draw';state.slot=null;state.locked=false;
     state.result=null;state.challenges=[];state.viewingTimeline=null;
-    state.screen='game';render();
+    state.screen='game';
+    drawNextCard();
   },!canStart));
   return root;
 }
@@ -369,6 +370,14 @@ function doReveal(){
 }
 
 // ── Game screen ───────────────────────────────────────────────────────────────
+function drawNextCard(){
+  if(!state.deck.length){state.screen='results';render();return;}
+  const[next,...rest]=state.deck;
+  state.card=next;state.deck=rest;
+  state.phase='place';state.slot=null;state.locked=false;state.result=null;state.challenges=[];
+  render();
+}
+
 function renderGame(){
   const{card,turn,phase,slot,result,scores,timelines,playlist,playerNames,playerCount,viewingTimeline}=state;
   const players=playerNames.slice(0,playerCount);
@@ -390,12 +399,9 @@ function renderGame(){
   ap(root,h('p',{class:'turn-hint',text:'Tap a name to see their timeline'}));
   const turnLine=h('p',{class:'turn-line'});ap(turnLine,ap(h('b',{class:'turn-name'}),players[turn]),"'s turn");ap(root,turnLine);
 
-  if(phase==='draw'){
-    if(!state.deck.length){state.screen='results';render();return;}
-    const[_next,..._rest]=state.deck;
-    state.card=_next;state.deck=_rest;state.phase='place';state.slot=null;state.locked=false;state.result=null;state.challenges=[];
-    render();return;
-  }
+  // 'draw' phase should never render - it's handled by drawNextCard()
+  // If we somehow get here, just show nothing (guard)
+  if(phase==='draw') return root;
 
   if(phase==='place'&&card){
     ap(root,ap(div('qr-card'),h('p',{text:'📲 Phone 2: scan to play in Spotify'}),renderQR(card.id||card.spotifyId),h('p',{class:'qr-sub',text:"Others: don't look at Phone 2!"})));
@@ -487,10 +493,7 @@ function renderGame(){
       ap(root,btn(result.winner!==null?'next-ok':'next-next','NEXT PLAYER →',()=>{
         state.card=null;state.slot=null;state.locked=false;state.result=null;state.challenges=[];
         state.turn=(state.turn+1)%state.playerCount;
-        if(!state.deck.length){state.screen='results';render();return;}
-        const[_n,..._r]=state.deck;
-        state.card=_n;state.deck=_r;state.phase='place';
-        render();
+        drawNextCard();
       }));
     }
   }
