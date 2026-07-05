@@ -48,7 +48,7 @@ let state = {
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-function h(tag,attrs){const el=document.createElement(tag);if(attrs)for(const[k,v]of Object.entries(attrs)){if(k==='class')el.className=v;else if(k==='click')el.onclick=v;else if(k==='text')el.textContent=v;else if(k==='style')Object.assign(el.style,v);else if(k==='disabled'){if(v)el.disabled=true;}else if(k==='placeholder')el.placeholder=v;else if(k==='value')el.value=v;else if(k==='input')el.oninput=v;else el.setAttribute(k,v);}return el;}
+function h(tag,attrs){const el=document.createElement(tag);if(attrs)for(const[k,v]of Object.entries(attrs)){if(k==='class')el.className=v;else if(k==='click')el.onclick=v;else if(k==='text')el.textContent=v;else if(k==='style')Object.assign(el.style,v);else if(k==='disabled'){if(v)el.disabled=true;}else if(k==='placeholder')el.placeholder=v;else if(k==='value')el.value=v;else if(k==='input')el.oninput=v;else if(k==='change')el.onchange=v;else el.setAttribute(k,v);}return el;}
 function ap(parent,...kids){kids.flat().forEach(k=>{if(k==null)return;if(typeof k==='string')parent.appendChild(document.createTextNode(k));else parent.appendChild(k);});return parent;}
 function div(cls,...kids){return ap(h('div',{class:cls}),...kids);}
 function btn(cls,txt,onclick,disabled){const b=h('button',{class:cls,text:txt,click:onclick});if(disabled)b.disabled=true;return b;}
@@ -292,7 +292,7 @@ function renderHome(){
   const goalCard=div('card',h('p',{class:'label',text:'GOAL SCORE'}),h('p',{class:'goal-desc',text:'First to reach this score wins'}));
   const goalRow=div('goal-row');
   [5,10,15,20].forEach(n=>{ap(goalRow,btn('pill'+(state.goalScore===n?' active':''),''+n,()=>{state.goalScore=n;render();}));});
-  const gInp=h('input',{placeholder:'Other',input:(ev)=>{const v=parseInt(ev.target.value);if(v>0){state.goalScore=v;render();}}});
+  const gInp=h('input',{placeholder:'Other',type:'number',inputmode:'numeric',change:(ev)=>{const v=parseInt(ev.target.value);if(v>=2){state.goalScore=v;}render();}});
   gInp.style.cssText='width:70px;text-align:center';
   if(![5,10,15,20].includes(state.goalScore))gInp.value=''+state.goalScore;
   ap(goalRow,gInp);ap(goalCard,goalRow);ap(root,goalCard);
@@ -313,7 +313,7 @@ function renderHome(){
     state.deck=deck;state.scores=Array(n).fill(0);state.timelines=timelines;
     state.tokens=Array(n).fill(START_TOKENS);
     state.turn=0;state.card=null;state.phase='draw';state.slot=null;state.locked=false;
-    state.result=null;state.challenges=[];state.viewingTimeline=null;
+    state.result=null;state.challenges=[];state.viewingTimeline=null;state.endReason=null;
     state.screen='game';
     drawNextCard();
   },!canStart));
@@ -371,7 +371,7 @@ function doReveal(){
 
 // ── Game screen ───────────────────────────────────────────────────────────────
 function drawNextCard(){
-  if(!state.deck.length){state.screen='results';render();return;}
+  if(!state.deck.length){state.endReason='📭 Deck ran out of cards';state.screen='results';render();return;}
   const[next,...rest]=state.deck;
   state.card=next;state.deck=rest;
   state.phase='place';state.slot=null;state.locked=false;state.result=null;state.challenges=[];
@@ -488,7 +488,7 @@ function renderGame(){
       ap(tlDiv,slts);ap(root,tlDiv);
     }
     if(result.gameWon){
-      ap(root,btn('next-ok',players[result.winner]+' wins! 🏆 See results',()=>{state.screen='results';render();}));
+      ap(root,btn('next-ok',players[result.winner]+' wins! 🏆 See results',()=>{state.endReason='🏆 '+players[result.winner]+' reached the goal ('+state.scores[result.winner]+'/'+state.goalScore+')';state.screen='results';render();}));
     } else {
       ap(root,btn(result.winner!==null?'next-ok':'next-next','NEXT PLAYER →',()=>{
         state.card=null;state.slot=null;state.locked=false;state.result=null;state.challenges=[];
@@ -497,7 +497,7 @@ function renderGame(){
       }));
     }
   }
-  ap(root,btn('end-btn','End Game',()=>{state.screen='results';render();}));
+  ap(root,btn('end-btn','End Game',()=>{if(!confirm('End the game and show results?'))return;state.endReason='🛑 Ended manually';state.screen='results';render();}));
   return root;
 }
 
@@ -538,6 +538,7 @@ function renderResults(){
   const ranked=players.map((n,i)=>({n,s:state.scores[i],tok:state.tokens[i]})).sort((a,b)=>b.s-a.s);
   const root=div('');
   ap(root,div('hero',ap(div('ring'),'🏆'),h('h1',{text:'RESULTS'})));
+  if(state.endReason)ap(root,h('p',{class:'turn-line',text:state.endReason}));
   const card=div('card');
   ranked.forEach((p,i)=>{const row=div('results-row');ap(row,h('span',{class:'results-medal',text:['🥇','🥈','🥉'][i]||(i+1+'.')}),h('span',{class:'results-name',text:p.n}),h('span',{class:'results-pts',text:p.s+' pts'}),h('span',{class:'results-tokens',text:'⚡'+p.tok}));ap(card,row);});
   ap(root,card,btn('start-btn','PLAY AGAIN',()=>{state.screen='home';render();}));
