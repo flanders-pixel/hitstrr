@@ -144,18 +144,28 @@ function makeQRFallback(spotifyId){
 }
 
 const serverQRCache={};
+const serverQRPending=new Set();
 
 function renderQR(spotifyId){
   if(QR_DATA[spotifyId]) return makeQR(spotifyId);
   if(serverQRCache[spotifyId]) return makeQRFromData(serverQRCache[spotifyId]);
-  const placeholder=div('qr-loading');
-  ap(placeholder,h('div',{class:'qr-spinner'}),h('p',{class:'qr-loading-text',text:'Generating QR…'}));
-  if(!API_URL.includes('YOUR_RAILWAY_URL')){
+  // Fetch from server and re-render when done
+  if(!serverQRPending.has(spotifyId) && !API_URL.includes('YOUR_RAILWAY_URL')){
+    serverQRPending.add(spotifyId);
     fetch(API_URL+'/qr/'+spotifyId)
       .then(r=>r.json())
-      .then(data=>{serverQRCache[spotifyId]=data;if(placeholder.parentNode)placeholder.parentNode.replaceChild(makeQRFromData(data),placeholder);})
-      .catch(()=>{if(placeholder.parentNode)placeholder.parentNode.replaceChild(makeQRFallback(spotifyId),placeholder);});
+      .then(data=>{
+        serverQRCache[spotifyId]=data;
+        serverQRPending.delete(spotifyId);
+        render(); // re-render now that we have the QR
+      })
+      .catch(()=>{
+        serverQRPending.delete(spotifyId);
+      });
   }
+  // Show spinner while loading
+  const placeholder=div('qr-loading');
+  ap(placeholder,h('div',{class:'qr-spinner'}),h('p',{class:'qr-loading-text',text:'Generating QR…'}));
   return placeholder;
 }
 
