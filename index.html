@@ -143,9 +143,33 @@ function makeQRFallback(spotifyId){
   return wrap;
 }
 
+const serverQRCache={};
+const serverQRPending=new Set();
+
 function renderQR(spotifyId){
-  const data=QR_DATA[spotifyId];
-  return data ? makeQR(spotifyId) : makeQRFallback(spotifyId);
+  if(QR_DATA[spotifyId]) return makeQR(spotifyId);
+  if(serverQRCache[spotifyId]) return makeQRFromData(serverQRCache[spotifyId]);
+  if(!serverQRPending.has(spotifyId)&&!API_URL.includes('YOUR_RAILWAY_URL')){
+    serverQRPending.add(spotifyId);
+    fetch(API_URL+'/qr/'+spotifyId)
+      .then(r=>r.json())
+      .then(data=>{serverQRCache[spotifyId]=data;serverQRPending.delete(spotifyId);render();})
+      .catch(()=>{serverQRPending.delete(spotifyId);});
+  }
+  const placeholder=div('qr-loading');
+  ap(placeholder,h('div',{class:'qr-spinner'}),h('p',{class:'qr-loading-text',text:'Generating QR…'}));
+  return placeholder;
+}
+
+function makeQRFromData(data){
+  const ns='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(ns,'svg');
+  svg.setAttribute('viewBox',data.vb);svg.setAttribute('width','260');svg.setAttribute('height','260');
+  svg.setAttribute('shape-rendering','crispEdges');svg.style.cssText='border-radius:12px;display:block;background:#fff';
+  const vb=data.vb.split(' ');
+  const bg=document.createElementNS(ns,'path');bg.setAttribute('fill','#fff');bg.setAttribute('d','M0 0h'+vb[2]+'v'+vb[3]+'H0z');
+  const p=document.createElementNS(ns,'path');p.setAttribute('stroke','#000');p.setAttribute('d',data.d);
+  svg.appendChild(bg);svg.appendChild(p);return svg;
 }
 
 function render(){
