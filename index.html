@@ -223,10 +223,18 @@ function renderHome(){
       }});
       ap(b,h('span',{class:'pl-emoji',text:pl.emoji||'🎵'}),ap(div('pl-info'),h('p',{class:'pl-name',text:pl.name}),h('p',{class:'pl-meta',text:(pl.tracks.length)+' tracks'})),on?h('span',{class:'check',text:'✓'}):null);
       ap(row,b);
-      // Delete button for server playlists
+      // Delete + year-recheck buttons for server playlists
       if(isServerMode&&state.serverPlaylists.find(p=>p.spotifyId===id)){
+        const rcBtn=h('button',{class:'pl-delete',text:'🔄',title:'Re-verify release years',click:async()=>{
+          if(!confirm('Re-verify all release years for "'+pl.name+'" against MusicBrainz? Runs in the background (~1 sec per track).'))return;
+          try{
+            const res=await fetch(API_URL+'/playlists/'+id+'/recheck-years',{method:'POST'});
+            const data=await res.json();
+            alert(data.message||data.error||'Started');
+          }catch(e){alert('Failed: '+e.message);}
+        }});
         const delBtn=h('button',{class:'pl-delete',text:'✕',click:()=>deletePlaylist(id)});
-        ap(row,delBtn);
+        ap(row,rcBtn,delBtn);
       }
       ap(plCard,row);
     });
