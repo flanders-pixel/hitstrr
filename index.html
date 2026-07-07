@@ -25,6 +25,7 @@ const START_TOKENS = 3;
 let state = {
   screen: 'home',
   goalScore: 10,
+  starterCards: 1,
   selectedPlaylists: [],
   playerCount: 2,
   playerNames: ['Player 1','Player 2','Player 3','Player 4','Player 5'],
@@ -297,7 +298,12 @@ function renderHome(){
   ap(pCard,grid);ap(root,pCard);
 
   // Goal score
-  const goalCard=div('card',h('p',{class:'label',text:'GOAL SCORE'}),h('p',{class:'goal-desc',text:'First to reach this score wins'}));
+  const startCard=div('card',h('p',{class:'label',text:'STARTER CARDS'}),h('p',{class:'goal-desc',text:'Cards each player begins with — more cards, trickier placements'}));
+  const startRow=div('goal-row');
+  [1,2,3].forEach(n=>{ap(startRow,btn('pill'+(state.starterCards===n?' active':''),''+n,()=>{state.starterCards=n;render();}));});
+  ap(startCard,startRow);ap(root,startCard);
+
+  const goalCard=div('card',h('p',{class:'label',text:'GOAL SCORE'}),h('p',{class:'goal-desc',text:'First to reach this score wins — every card in your timeline counts'}));
   const goalRow=div('goal-row');
   [5,10,15,20].forEach(n=>{ap(goalRow,btn('pill'+(state.goalScore===n?' active':''),''+n,()=>{state.goalScore=n;render();}));});
   const gInp=h('input',{placeholder:'Other',type:'number',inputmode:'numeric',change:(ev)=>{const v=parseInt(ev.target.value);if(v>=2){state.goalScore=v;}render();}});
@@ -312,13 +318,13 @@ function renderHome(){
     const tracks=buildCombinedPlaylist();
     const deck=shuffle(tracks);
     const timelines=Array.from({length:n},()=>[]);
-    for(let i=0;i<n;i++){if(deck.length)timelines[i].push(deck.shift());}
+    for(let i=0;i<n;i++){for(let k=0;k<state.starterCards;k++){if(deck.length)timelines[i].push(deck.shift());}}
     timelines.forEach(tl=>tl.sort((a,b)=>a.year-b.year));
     const selPls=state.selectedPlaylists.map(id=>getAllPlaylists().find(p=>(p.id||p.spotifyId)===id)).filter(Boolean);
     const plName=selPls.length===1?selPls[0].name:selPls.length+' playlists';
     const plEmoji=selPls.length===1?(selPls[0].emoji||'🎵'):'🎵';
     state.playlist={name:plName,emoji:plEmoji};
-    state.deck=deck;state.scores=Array(n).fill(0);state.timelines=timelines;
+    state.deck=deck;state.scores=timelines.map(tl=>tl.length);state.timelines=timelines;
     state.tokens=Array(n).fill(START_TOKENS);
     state.turn=0;state.card=null;state.phase='draw';state.slot=null;state.locked=false;
     state.result=null;state.challenges=[];state.viewingTimeline=null;state.endReason=null;
