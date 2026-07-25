@@ -425,6 +425,11 @@ function renderGame(){
     if(slot!==null){
       ap(root,btn('lock-btn','🔒 Lock in & start challenge phase',()=>{state.locked=true;state.phase='challenge';render();}));
     }
+    ap(root,btn('skip-btn','⚠️ Song unavailable — draw another',()=>{
+      if(!confirm('Skip this song (dead link) and draw a new card for '+players[turn]+'? Same player keeps the turn.'))return;
+      if(state.card)state.deck=[...state.deck,state.card];
+      drawNextCard();
+    }));
   }
 
   if(phase==='challenge'&&card){
