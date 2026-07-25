@@ -106,6 +106,27 @@ async function submitPlaylist(){
   render();
 }
 
+async function submitCSV(){
+  if(!state.addCsvText){state.addStatus={error:'Pick a CSV file first'};render();return;}
+  if(!(state.addCsvName||'').trim()){state.addStatus={error:'Enter a playlist name for the CSV'};render();return;}
+  state.addStatus='loading';render();
+  try{
+    const res=await fetch(API_URL+'/playlists/import-csv',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({csv:state.addCsvText,name:state.addCsvName.trim(),emoji:state.addEmoji}),
+    });
+    const data=await res.json();
+    if(!res.ok)throw new Error(data.error||'CSV import failed');
+    await loadServerPlaylists();
+    state.addStatus='success';state.addCsvText=null;state.addCsvFileName=null;state.addCsvName='';
+    setTimeout(()=>{state.addStatus=null;state.addingPlaylist=false;render();},2500);
+  }catch(e){
+    state.addStatus={error:e.message};
+  }
+  render();
+}
+
 async function deletePlaylist(spotifyId){
   if(!confirm('Remove this playlist from the game?'))return;
   try{
@@ -266,6 +287,15 @@ function renderHome(){
       const inp=h('input',{placeholder:'https://open.spotify.com/playlist/...',value:state.addUrl,input:(e)=>{state.addUrl=e.target.value;}});
       ap(addForm,inp);
 
+      // CSV import (Exportify) — server parses, dedupes, and MusicBrainz-scans years
+      ap(addForm,h('p',{class:'add-label',text:'…or import an Exportify CSV:'}));
+      const nameInp=h('input',{placeholder:'Playlist name (for CSV)',value:state.addCsvName||'',input:(e)=>{state.addCsvName=e.target.value;}});
+      ap(addForm,nameInp);
+      const fileInp=h('input',{type:'file',accept:'.csv'});
+      fileInp.onchange=(e)=>{const f=e.target.files&&e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{state.addCsvText=r.result;state.addCsvFileName=f.name;render();};r.readAsText(f);};
+      ap(addForm,fileInp);
+      if(state.addCsvFileName){ap(addForm,h('p',{class:'add-status-ok',text:'📄 '+state.addCsvFileName+' ready'}));}
+
       if(state.addStatus==='loading'){
         ap(addForm,h('p',{class:'add-status-loading',text:'⏳ Fetching playlist from Spotify…'}));
       } else if(state.addStatus==='success'){
@@ -280,6 +310,9 @@ function renderHome(){
         btn('add-cancel-btn','Cancel',()=>{state.addingPlaylist=false;state.addUrl='';state.addStatus=null;render();})
       );
       ap(addForm,formBtns);
+      if(state.addCsvText){
+        ap(addForm,btn('add-submit-btn','📄 Import CSV → '+(state.addCsvName||'Untitled'),()=>submitCSV(),state.addStatus==='loading'));
+      }
       ap(plCard,addForm);
     }
   } else {
