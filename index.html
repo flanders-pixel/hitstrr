@@ -173,6 +173,7 @@ function makeQRFromData(data){
   svg.appendChild(bg);svg.appendChild(p);return svg;
 }
 
+window.addEventListener('beforeunload',e=>{if(state.screen==='game'){e.preventDefault();e.returnValue='';}});
 function render(){
   const app=document.getElementById('app');
   while(app.firstChild)app.removeChild(app.firstChild);
